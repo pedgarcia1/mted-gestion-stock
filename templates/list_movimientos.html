@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Movimientos</title>
+</head>
+</body>
+    <h1>Listado Movimientos</h1>
+    <div style="overflow-y: auto; height: 400px;">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Part Number</th>
+                    <th>Part Name</th>
+                    <th>Operación Stock</th>
+                    <th>Justificación</th>
+                    <th>Creado Por</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mov in movimientos %}
+                <tr>
+                    <td>{{ mov.id }}</td>
+                    <td>{{ mov.part_number }}</td>
+                    <td>{{ mov.part_name }}</td>
+                    <td>{{ mov.operacion_stock }}</td>
+                    <td>{{ mov.justificacion }}</td>
+                    <td>{{ mov.creado_por }}</td>
+                    <td>{{ mov.fecha }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>

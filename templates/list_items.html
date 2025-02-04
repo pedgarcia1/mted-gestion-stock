@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Items</title>
+</head>
+</body>
+    <h1>Listado Items</h1>
+    <div style="overflow-y: auto; height: 400px;">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Part Number</th>
+                    <th>Part Name</th>
+                    <th>Fabricante</th>
+                    <th>Modelo</th>
+                    <th>Rubro</th>
+                    <th>Almacén</th>
+                    <th>Stock</th>
+                    <th>Stock Mínimo</th>
+                    <th>Unidad</th>
+                    <th>Foto</th>
+                    <th>Última Modificación</th>
+                    <th>Modificado Por</th>
+                    <th>Costo</th>
+                    <th>Ubicación</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.part_number }}</td>
+                    <td>{{ item.part_name }}</td>
+                    <td>{{ item.fabricante }}</td>
+                    <td>{{ item.modelo }}</td>
+                    <td>{{ item.rubro }}</td>
+                    <td>{{ item.almacen }}</td>
+                    <td>{{ item.stock }}</td>
+                    <td>{{ item.stock_minimo }}</td>
+                    <td>{{ item.unidad }}</td>
+                    <td>
+                        <!-- Se asume que 'foto' es la URL de la imagen -->
+                        <img src="{{ item.foto }}" alt="Foto" style="width:50px;">
+                    </td>
+                    <td>{{ item.ultima_modificacion }}</td>
+                    <td>{{ item.modificado_por }}</td>
+                    <td>{{ item.costo }}</td>
+                    <td>{{ item.ubicacion }}</td>
+                    <td>{{ item.estado }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
