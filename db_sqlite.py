@@ -171,4 +171,4 @@ def create_connection():
     conexion.commit()
     return conexion, cursor
     
-
+# gl
