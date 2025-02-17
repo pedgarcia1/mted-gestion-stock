@@ -56,3 +56,52 @@ a.btn:hover {
     font-size: 1rem;            /* Ajusta el tamaño de la fuente */
     width: 100%;                /* Ajusta el ancho del input */
 }
+
+.table-container {
+    overflow-y: auto;
+    height: 400px;
+    margin: 1rem;
+    /* width: 70rem; */
+    /* Ajusta la fuente según prefieras */
+    font-size: 0.9rem;
+    /* Si el body es oscuro, podrías poner un fondo un poco más oscuro aquí también */
+    background-color: #2c2c2c; 
+    color: #f0f0f0; /* Texto claro sobre fondo oscuro */
+    border-radius: 5px; /* Borde redondeado opcional */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #3c3c3c; /* Cabecera un poco más clara que el contenedor */
+}
+
+th, td {
+    padding: 10px;         /* Un poco más de espacio para texto */
+    border-bottom: 1px solid #444; 
+}
+
+/* Filas alternas */
+tbody tr:nth-child(odd) {
+    background-color: #3f3f3f; /* Un gris intermedio */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #2f2f2f; 
+}
+
+/* Si deseas un color distinto en hover */
+tbody tr:hover {
+    background-color: #505050;
+    cursor: default; /* o pointer si deseas que parezca clicable */
+}
+
+/* Asegúrate de que las imágenes se vean bien en fondo oscuro */
+img {
+    background-color: #fff; 
+    border: 1px solid #ccc;
+    padding: 2px;
+}

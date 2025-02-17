@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
 from waitress import serve
 import db_sqlite as db
 
@@ -86,6 +86,34 @@ def list_movimientos():
     if request.method == 'GET':
         movimientos = db.get_movimientos()  # Función que retorna la lista de filas de la tabla
         return render_template('list_movimientos.html', movimientos=movimientos)
+    
+@app.route('/descargar_items_csv', methods=['GET'])
+def descargar_items_csv():
+    # Llama a la función que genera el CSV y obtiene el contenido
+    csv_data = db.items_to_csv()  
+    # Devuelve el CSV como archivo descargable
+    return Response(
+        csv_data,
+        mimetype='text/csv',
+        headers={
+            "Content-disposition":
+            "attachment; filename=items.csv"
+        }
+    )
+    
+@app.route('/descargar_movimientos_csv', methods=['GET'])
+def descargar_movimientos_csv():
+    # Llama a la función que genera el CSV y obtiene el contenido
+    csv_data = db.movimientos_to_csv()  
+    # Devuelve el CSV como archivo descargable
+    return Response(
+        csv_data,
+        mimetype='text/csv',
+        headers={
+            "Content-disposition":
+            "attachment; filename=movimientos.csv"
+        }
+    )
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)

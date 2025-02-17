@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado Movimientos</title>
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
 </head>
 </body>
     <h1>Listado Movimientos</h1>
-    <div style="overflow-y: auto; height: 400px;">
+    <div class="table-container">
         <table>
             <thead>
                 <tr>
@@ -35,5 +36,9 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div>
+        <a href="{{ url_for('descargar_movimientos_csv') }}" class="btn">Descargar</a>
+        <a href="{{ url_for('index') }}" class="btn">Volver</a>
     </div>
 </body>

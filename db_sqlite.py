@@ -1,6 +1,7 @@
 import sqlite3
 from datetime import datetime
 import csv
+import io
 
 def modificacion(part_number, operacion_stock, justificacion, creado_por, conexion=None, cursor=None):
     
@@ -62,7 +63,7 @@ def baja_item(part_number,modificado_por):
         conexion.commit()
     conexion.close()
     
-def items_to_csv():
+def download_items_csv():
     [conexion, cursor] = create_connection()
     cursor.execute("SELECT * FROM items")
     with open("items.csv", "w", newline="") as file:
@@ -70,6 +71,21 @@ def items_to_csv():
         csv_writer.writerow([i[0] for i in cursor.description])
         csv_writer.writerows(cursor)
     conexion.close()
+    
+def items_to_csv():
+    [conexion, cursor] = create_connection()
+    cursor.execute("SELECT * FROM items")
+    
+    output = io.StringIO()
+    csv_writer = csv.writer(output, lineterminator='\n')
+    header = [desc[0] for desc in cursor.description]
+    csv_writer.writerow(header)
+    
+    for row in cursor.fetchall():
+        csv_writer.writerow(row)
+    
+    conexion.close()
+    return output.getvalue()
     
 def get_items():
     [conexion, cursor] = create_connection()
@@ -90,8 +106,24 @@ def get_movimientos():
     movimientos = [dict(row) for row in cursor.fetchall()]
     conexion.close()
     return movimientos
-        
+
 def movimientos_to_csv():
+    [conexion, cursor] = create_connection()
+    cursor.execute("SELECT * FROM movimientos")
+    
+    output = io.StringIO()
+    csv_writer = csv.writer(output, lineterminator='\n')
+    
+    header = [desc[0] for desc in cursor.description]
+    csv_writer.writerow(header)
+    
+    for row in cursor.fetchall():
+        csv_writer.writerow(row)
+    
+    conexion.close()
+    return output.getvalue()
+        
+def download_movimientos_csv():
     [conexion, cursor] = create_connection()
     cursor.execute("SELECT * FROM movimientos")
     with open("movimientos.csv", "w", newline="") as file:
