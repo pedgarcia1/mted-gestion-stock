@@ -9,15 +9,15 @@
 <body>
     <h1>Baja Item</h1>
     <form action="{{ url_for('baja_item') }}" method="POST">
-        <div>
+        <div class="form-group">
             <label for="part_number">Part Number:</label>
             <input type="text" id="part_number" name="part_number" required>
         </div>
-        <div>
+        <div class="form-group">
             <label for="modificado_por">Modificado Por:</label>
             <input type="text" id="modificado_por" name="modificado_por" required>
         </div>
-        <div>
+        <div class="form-group">
             <button type="submit" class="btn">Guardar</button>
             <a href="{{ url_for('index') }}" class="btn">Cancelar</a>
         </div>

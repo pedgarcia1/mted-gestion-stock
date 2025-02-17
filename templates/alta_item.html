@@ -1,69 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alta Item</title>
-    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alta Item</title>
+  <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
 </head>
 <body>
-    <h1>Alta Item</h1>
-    <form action="{{ url_for('alta_item') }}" method="POST">
-        <div>
-            <label for="part_number">Part Number:</label>
-            <input type="text" id="part_number" name="part_number" required>
-        </div>
-        <div>
-            <label for="part_name">Part Name:</label>
-            <input type="text" id="part_name" name="part_name" required>
-        </div>
-        <div>
-            <label for="fabricante">Fabricante:</label>
-            <input type="text" id="fabricante" name="fabricante" required>
-        </div>
-        <div>
-            <label for="modelo">Modelo:</label>
-            <input type="text" id="modelo" name="modelo" required>
-        </div>
-        <div>
-            <label for="rubro">Rubro:</label>
-            <input type="text" id="rubro" name="rubro" required>
-        </div>
-        <div>
-            <label for="almacen">Almacén:</label>
-            <input type="text" id="almacen" name="almacen" required>
-        </div>
-        <div>
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" required>
-        </div>
-        <div>
-            <label for="stock_minimo">Stock Mínimo:</label>
-            <input type="number" id="stock_minimo" name="stock_minimo" required>
-        </div>
-        <div>
-            <label for="unidad">Unidad:</label>
-            <input type="text" id="unidad" name="unidad" required>
-        </div>
-        <div>
-            <label for="modificado_por">Modificado Por:</label>
-            <input type="text" id="modificado_por" name="modificado_por" required>
-        </div>
-        <div>
-            <label for="costo">Costo:</label>
-            <input type="number" step="any" id="costo" name="costo" required>
-        </div>
-        <div>
-            <label for="ubicacion">Ubicación:</label>
-            <input type="text" id="ubicacion" name="ubicacion" required>
-        </div>
-        <!-- El campo "foto" se asigna de forma fija en el backend -->
-        <div>
-            <button type="submit">Guardar</button>
-        </div>
-        <div>
-            <a href="{{ url_for('index') }}" class="btn">Cancelar</a>
-        </div>
-    </form>
+  <h1>Alta Item</h1>
+  <form action="{{ url_for('alta_item') }}" method="POST">
+    <div class="form-group">
+      <label for="part_number">Part Number:</label>
+      <input type="text" id="part_number" name="part_number" required>
+    </div>
+    <div class="form-group">
+      <label for="part_name">Part Name:</label>
+      <input type="text" id="part_name" name="part_name" required>
+    </div>
+    <div class="form-group">
+      <label for="fabricante">Fabricante:</label>
+      <input type="text" id="fabricante" name="fabricante" required>
+    </div>
+    <div class="form-group">
+      <label for="modelo">Modelo:</label>
+      <input type="text" id="modelo" name="modelo" required>
+    </div>
+    <div class="form-group">
+      <label for="rubro">Rubro:</label>
+      <input type="text" id="rubro" name="rubro" required>
+    </div>
+    <div class="form-group">
+      <label for="almacen">Almacén:</label>
+      <input type="text" id="almacen" name="almacen" required>
+    </div>
+    <div class="form-group">
+      <label for="stock">Stock:</label>
+      <input type="number" id="stock" name="stock" required>
+    </div>
+    <div class="form-group">
+      <label for="stock_minimo">Stock Mínimo:</label>
+      <input type="number" id="stock_minimo" name="stock_minimo" required>
+    </div>
+    <div class="form-group">
+      <label for="unidad">Unidad:</label>
+      <input type="text" id="unidad" name="unidad" required>
+    </div>
+    <div class="form-group">
+      <label for="modificado_por">Modificado Por:</label>
+      <input type="text" id="modificado_por" name="modificado_por" required>
+    </div>
+    <div class="form-group">
+      <label for="costo">Costo:</label>
+      <input type="number" step="any" id="costo" name="costo" required>
+    </div>
+    <div class="form-group">
+      <label for="ubicacion">Ubicación:</label>
+      <input type="text" id="ubicacion" name="ubicacion" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn">Guardar</button>
+      <a href="{{ url_for('index') }}" class="btn">Cancelar</a>
+    </div>
+  </form>
 </body>
 </html>

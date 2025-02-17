@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
@@ -34,4 +35,24 @@ a.btn {
 }
 a.btn:hover {
     background-color: whitesmoke;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;        /* Alinea verticalmente label y input */
+    margin-bottom: 10px;        /* Espacio entre cada grupo */
+    width: 40rem;
+}
+
+.form-group label {
+    width: 240px;               /* Ajusta según tu preferencia */
+    margin-right: 20px;         /* Espacio entre la etiqueta y el campo */
+    text-align: left;          /* Alinea el texto de la etiqueta a la derecha */
+}
+
+.form-group input {
+    flex: 1;                    /* Permite que el input ocupe el espacio restante */
+    padding: 16px;               /* Espacio interno en el input */
+    font-size: 1rem;            /* Ajusta el tamaño de la fuente */
+    width: 100%;                /* Ajusta el ancho del input */
 }
