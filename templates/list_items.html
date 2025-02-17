@@ -28,7 +28,7 @@
                     <th>Modificado Por</th>
                     <th>Costo</th>
                     <th>Ubicación</th>
-                    <th>Estado</th>
+                    <!-- <th>Estado</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -45,14 +45,13 @@
                     <td>{{ item.stock_minimo }}</td>
                     <td>{{ item.unidad }}</td>
                     <td>
-                        <!-- Se asume que 'foto' es la URL de la imagen -->
-                        <img src="{{ item.foto }}" alt="Foto" style="width:50px;">
+                        <img src="{{ url_for('static', filename=item.foto) }}" alt="Foto" class="thumbnail">
                     </td>
                     <td>{{ item.ultima_modificacion }}</td>
                     <td>{{ item.modificado_por }}</td>
                     <td>{{ item.costo }}</td>
                     <td>{{ item.ubicacion }}</td>
-                    <td>{{ item.estado }}</td>
+                    <!-- <td>{{ item.estado }}</td> -->
                 </tr>
                 {% endfor %}
             </tbody>

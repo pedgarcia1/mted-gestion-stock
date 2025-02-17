@@ -105,3 +105,11 @@ img {
     border: 1px solid #ccc;
     padding: 2px;
 }
+
+.thumbnail {
+    width: 50px;
+    height: auto;
+    border: 1px solid #ccc; /* Opcional: un borde sutil */
+    padding: 2px;           /* Opcional: un poco de espacio interno */
+    background-color: #fff; /* Opcional: si tu fondo es oscuro */
+}
