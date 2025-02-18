@@ -12,6 +12,7 @@
         <div class="form-group">
             <label for="part_number">Part Number:</label>
             <select id="part_number" name="part_number" class="custom-select" required>
+                <option value="">Seleccionar</option>
                 {% for p_number in part_number_list %}
                     <option value="{{ p_number }}">{{ p_number }}</option>
                 {% endfor %}
@@ -20,6 +21,7 @@
         <div class="form-group">
             <label for="part_name">Part Name:</label>
             <select id="part_name" name="part_name" class="custom-select" required>
+                <option value="">Seleccionar</option>
                 {% for p_name in part_name_list %}
                     <option value="{{ p_name }}">{{ p_name }}</option>
                 {% endfor %}
@@ -42,5 +44,29 @@
             <a href="{{ url_for('index') }}" class="btn">Cancelar</a>
         </div>
     </form>
+    <script>
+        const part_name = document.getElementById('part_name');
+        const part_number = document.getElementById('part_number');
+      
+        function toggleSelects() {
+          // Si en part_name se ha seleccionado algo distinto a vacío, deshabilita part_number
+          if (part_name.value !== "") {
+            part_number.disabled = true;
+          } else {
+            part_number.disabled = false;
+          }
+          
+          // Si en part_number se ha seleccionado algo distinto a vacío, deshabilita part_name
+          if (part_number.value !== "") {
+            part_name.disabled = true;
+          } else {
+            part_name.disabled = false;
+          }
+        }
+      
+        // Escucha el evento 'change' en ambos select
+        part_name.addEventListener('change', toggleSelects);
+        part_number.addEventListener('change', toggleSelects);
+    </script>
 </body>
 </html>

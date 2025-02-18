@@ -16,6 +16,10 @@ def add_item():
         # Obtén los datos enviados por el formulario:
         part_number = request.form.get('part_number')
         part_name = request.form.get('part_name')
+        # Si se ingresa part name, buscar el part number correspondiente en la base de datos
+        if part_number is None:
+            item = db.get_item_name(part_name)
+            part_number = item[1]
         stock = request.form.get('stock')
         justificacion = request.form.get('justificacion')
         modificado_por = request.form.get('modificado_por')

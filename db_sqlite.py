@@ -145,6 +145,13 @@ def get_item(part_number):
     item = cursor.fetchone()
     conexion.close()
     return item
+
+def get_item_name(part_name):
+    [conexion, cursor] = create_connection()
+    cursor.execute("SELECT * FROM items WHERE part_name = ?", (part_name,))
+    item = cursor.fetchone()
+    conexion.close()
+    return item
         
 def create_connection():
     conexion = sqlite3.connect("inventario.db")
