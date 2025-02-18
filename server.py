@@ -75,7 +75,7 @@ def baja_item():
         part_number = request.form.get('part_number')
         modificado_por = request.form.get('modificado_por')
         
-        db.baja_item(part_number)
+        db.baja_item(part_number,modificado_por)
         
         # Luego redirige o muestra un mensaje de éxito:
         return redirect(url_for('index'))
