@@ -45,7 +45,10 @@
                     <td>{{ item.stock_minimo }}</td>
                     <td>{{ item.unidad }}</td>
                     <td>
-                        <img src="{{ url_for('static', filename=item.foto) }}" alt="Foto" class="thumbnail">
+                        <img src="{{ url_for('static', filename=item.foto) }}" 
+                        alt="Foto" 
+                        class="thumbnail" 
+                        onclick="openModal('{{ url_for('static', filename=item.foto) }}')" /> 
                     </td>
                     <td>{{ item.ultima_modificacion }}</td>
                     <td>{{ item.modificado_por }}</td>
@@ -61,4 +64,27 @@
         <a href="{{ url_for('descargar_items_csv') }}" class="btn">Descargar</a>
         <a href="{{ url_for('index') }}" class="btn">Volver</a>
     </div>
+    <!-- Modal (oculto por defecto) -->
+    <div id="myModal" class="modal">
+        <!-- Botón de cerrar -->
+        <span class="close" onclick="closeModal()">&times;</span>
+        <!-- Imagen en grande -->
+        <img class="modal-content" id="modalImg">
+    </div>
+    <!-- Script para abrir y cerrar el modal -->
+    <script>
+        function openModal(imageUrl) {
+          // Muestra el modal
+          const modal = document.getElementById('myModal');
+          const modalImg = document.getElementById('modalImg');
+          modal.style.display = 'flex';
+          modalImg.src = imageUrl;
+        }
+    
+        function closeModal() {
+          // Oculta el modal
+          const modal = document.getElementById('myModal');
+          modal.style.display = 'none';
+        }
+      </script>
 </body>
