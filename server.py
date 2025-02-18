@@ -1,8 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, Response
 from waitress import serve
 import db_sqlite as db
+import os
+import time
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+
+# UPLOAD_FOLDER = os.path.join('static', 'imagenes')
+UPLOAD_FOLDER = os.path.join('imagenes')
+# ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 @app.route('/index')
@@ -54,12 +63,27 @@ def alta_item():
         stock = request.form.get('stock')
         stock_minimo = request.form.get('stock_minimo')
         unidad = request.form.get('unidad')
-        foto = "imagenes/template.png"
+        # foto 
         modificado_por = request.form.get('modificado_por')
         costo = request.form.get('costo')
         ubicacion = request.form.get('ubicacion')
         
-        db.alta_item(part_number,part_name,fabricante,modelo,rubro,almacen,stock,stock_minimo,unidad,foto,modificado_por,costo,ubicacion)
+        # Foto 
+        if 'foto' not in request.files:
+            foto_path = os.path.join(app.config['UPLOAD_FOLDER'], 'default.png')
+            print("NO foto")
+        else:
+            print("found foto")
+            file = request.files['foto']
+            
+            s_filename = secure_filename(file.filename)
+            unique_filename = f"{int(time.time())}_{s_filename}"
+            foto_path = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
+            file.save(os.path.join('static', foto_path))
+
+        print(foto_path)
+        foto_path = foto_path.replace('\\', '/')
+        db.alta_item(part_number,part_name,fabricante,modelo,rubro,almacen,stock,stock_minimo,unidad,foto_path,modificado_por,costo,ubicacion)
         
         # Luego redirige o muestra un mensaje de éxito:
         return redirect(url_for('index'))
