@@ -11,7 +11,19 @@
     <form action="{{ url_for('add_item') }}" method="POST">
         <div class="form-group">
             <label for="part_number">Part Number:</label>
-            <input type="text" id="part_number" name="part_number" required>
+            <select id="part_number" name="part_number" class="custom-select" required>
+                {% for p_number in part_number_list %}
+                    <option value="{{ p_number }}">{{ p_number }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="part_name">Part Name:</label>
+            <select id="part_name" name="part_name" class="custom-select" required>
+                {% for p_name in part_name_list %}
+                    <option value="{{ p_name }}">{{ p_name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
             <label for="stock">Stock:</label>

@@ -15,6 +15,7 @@ def add_item():
     if request.method == 'POST':
         # Obtén los datos enviados por el formulario:
         part_number = request.form.get('part_number')
+        part_name = request.form.get('part_name')
         stock = request.form.get('stock')
         justificacion = request.form.get('justificacion')
         modificado_por = request.form.get('modificado_por')
@@ -29,7 +30,12 @@ def add_item():
         return redirect(url_for('index'))
     
     # Si la solicitud es GET, simplemente renderiza el formulario:
-    return render_template('add_item.html')
+    items = db.get_items()
+    part_name_list = [item['part_name'] for item in items]
+    part_number_list = [item['part_number'] for item in items]
+    print(part_name_list)
+    print(part_number_list)
+    return render_template('add_item.html', part_number_list=part_number_list, part_name_list=part_name_list)
 
 @app.route('/alta_item', methods=['GET', 'POST'])
 def alta_item():

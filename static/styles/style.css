@@ -57,6 +57,25 @@ a.btn:hover {
     width: 100%;                /* Ajusta el ancho del input */
 }
 
+.custom-select {
+    flex: 1;                    /* Ocupa el espacio restante */
+    padding: 16px;              /* Mismo padding que input */
+    font-size: 1rem;            /* Mismo tamaño de fuente */
+    width: 100%;                /* Se ajusta al ancho del contenedor */
+    border: 1px solid #ccc;     /* Borde similar al input */
+    border-radius: 4px;         /* Borde redondeado */
+    background-color: #fff;     /* Fondo blanco */
+    color: #333;                /* Color de texto similar */
+    /* Para eliminar la apariencia nativa del select y poder personalizarlo */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='5'%3E%3Cpath%20fill='%23333'%20d='M0,0%205,5%2010,0'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 5px;
+}
+
 .table-container {
     overflow-y: auto;
     height: 400px;
