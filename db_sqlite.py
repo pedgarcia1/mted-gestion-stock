@@ -54,13 +54,16 @@ def baja_item(part_number,modificado_por):
     if stock is not None:
         # Ajustar stock a 0 con un movimiento
         modificacion(part_number, -stock, "Baja", modificado_por)
-        # Cambiar estado a 'BAJA'
-        cursor.execute("""
-            UPDATE items
-            SET estado = 'BAJA'
-            WHERE part_number = ?
-        """, (part_number,))
-        conexion.commit()
+    else:
+        modificacion(part_number, 0, "Baja", modificado_por)
+        
+    # Cambiar estado a 'BAJA'
+    cursor.execute("""
+        UPDATE items
+        SET estado = 'BAJA'
+        WHERE part_number = ?
+    """, (part_number,))
+    conexion.commit()
     conexion.close()
     
 def download_items_csv():

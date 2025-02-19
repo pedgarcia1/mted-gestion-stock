@@ -11,7 +11,12 @@
     <form action="{{ url_for('baja_item') }}" method="POST">
         <div class="form-group">
             <label for="part_number">Part Number:</label>
-            <input type="text" id="part_number" name="part_number" required>
+            <select id="part_number" name="part_number" class="custom-select" required>
+                <option value="">Seleccionar</option>
+                {% for p_number in part_number_list %}
+                    <option value="{{ p_number }}">{{ p_number }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
             <label for="modificado_por">Modificado Por:</label>

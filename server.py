@@ -46,8 +46,8 @@ def add_item():
     items = db.get_items()
     part_name_list = [item['part_name'] for item in items]
     part_number_list = [item['part_number'] for item in items]
-    print(part_name_list)
-    print(part_number_list)
+    # print(part_name_list)
+    # print(part_number_list)
     return render_template('add_item.html', part_number_list=part_number_list, part_name_list=part_name_list)
 
 @app.route('/alta_item', methods=['GET', 'POST'])
@@ -71,9 +71,7 @@ def alta_item():
         # Foto 
         if 'foto' not in request.files:
             foto_path = os.path.join(app.config['UPLOAD_FOLDER'], 'default.png')
-            print("NO foto")
         else:
-            print("found foto")
             file = request.files['foto']
             
             s_filename = secure_filename(file.filename)
@@ -81,7 +79,6 @@ def alta_item():
             foto_path = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
             file.save(os.path.join('static', foto_path))
 
-        print(foto_path)
         foto_path = foto_path.replace('\\', '/')
         db.alta_item(part_number,part_name,fabricante,modelo,rubro,almacen,stock,stock_minimo,unidad,foto_path,modificado_por,costo,ubicacion)
         
@@ -106,7 +103,9 @@ def baja_item():
     
     elif request.method == 'GET':
         # Si la solicitud es GET, simplemente renderiza el formulario:
-        return render_template('baja_item.html')
+        items = db.get_items()
+        part_number_list = [item['part_number'] for item in items]
+        return render_template('baja_item.html' , part_number_list=part_number_list)
     
 
 @app.route('/list_items',methods=['GET'])
