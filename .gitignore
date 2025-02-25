@@ -2,3 +2,5 @@
 .env
 *.pyc
 *.db
+inventario.db
+__pycache__/db_sqlite.cpython-313.pyc
