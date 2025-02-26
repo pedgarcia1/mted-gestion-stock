@@ -4,11 +4,15 @@ import db_sqlite as db
 import os
 import time
 from werkzeug.utils import secure_filename
+import qrcode
 
 app = Flask(__name__)
 
 # UPLOAD_FOLDER = os.path.join('static', 'imagenes')
 UPLOAD_FOLDER = os.path.join('imagenes')
+HOST_IP = "0.0.0.0"
+PORT_IP = 8000
+URL = f"http://{HOST_IP}:{PORT_IP}/"
 # ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -149,4 +153,4 @@ def descargar_movimientos_csv():
     )
 
 if __name__ == "__main__":
-    serve(app, host="0.0.0.0", port=8000)
+    serve(app, host=HOST_IP, port=PORT_IP)
