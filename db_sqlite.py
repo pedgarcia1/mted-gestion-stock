@@ -2,6 +2,9 @@ import sqlite3
 from datetime import datetime
 import csv
 import io
+import os
+import qrcode
+from werkzeug.utils import secure_filename
 
 def modificacion(part_number, operacion_stock, justificacion, creado_por, conexion=None, cursor=None):
     
@@ -175,6 +178,7 @@ def create_connection():
         stock_minimo INTEGER NOT NULL DEFAULT 0,
         unidad TEXT,
         foto TEXT,
+        qr_path TEXT DEFAULT NULL,
         ultima_modificacion TEXT,
         modificado_por TEXT,
         costo REAL,
@@ -213,4 +217,58 @@ def create_connection():
     conexion.commit()
     return conexion, cursor
     
-# gl
+# Función para generar un código QR para un item dado
+def generate_qr_for_item(item_id, base_url='https://tusitio.com/item'):
+    # Construye la URL única del item
+    url = f"{base_url}?id={item_id}"
+    
+    # Crea el objeto QRCode
+    qr = qrcode.QRCode(
+        version=1,  # Versión 1: código QR pequeño; puedes ajustar según la cantidad de datos
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    
+    # Agrega la URL al QR
+    qr.add_data(url)
+    qr.make(fit=True)
+    
+    # Crea la imagen del QR
+    img = qr.make_image(fill_color="black", back_color="white")
+    return img
+
+def save_qr_image(img, item_id, folder='static/qrcodes'):
+    """
+    Guarda la imagen 'img' en la carpeta 'folder' con un nombre único
+    que incluya el item_id. Luego, actualiza la base de datos con la
+    ruta resultante.
+    """
+    # Asegura que la carpeta exista
+    os.makedirs(folder, exist_ok=True)
+
+    # Genera un nombre seguro y único para la imagen
+    filename = secure_filename(f"qr_item_{item_id}.png")
+
+    # Construye la ruta final en el servidor
+    filepath = os.path.join(folder, filename)
+    img.save(filepath)
+
+    # Convierte las barras invertidas (en Windows) a barras normales
+    qr_path = filepath.replace('\\', '/')
+
+    # Actualiza la base de datos con la ruta del QR
+    # Ajusta 'db.update_item_qr_path' al nombre de tu función real
+    db.update_item_qr_path(item_id, qr_path)
+
+    return qr_path
+
+# Función que integra la generación y guardado del QR para un item
+def generate_and_save_qr_for_item(item):
+    # Se asume que 'item' es un diccionario que contiene al menos la clave 'id'
+    item_id = item['id']
+    img = generate_qr_for_item(item_id)
+    qr_path = save_qr_image(img, item_id)
+    # Aquí podrías actualizar la base de datos para guardar 'qr_path' asociado al item
+    # Por ejemplo: db.update_item_qr_path(item_id, qr_path)
+    return qr_path

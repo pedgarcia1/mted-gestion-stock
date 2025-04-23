@@ -11,21 +11,26 @@
     <form action="{{ url_for('add_item') }}" method="POST">
         <div class="form-group">
             <label for="part_number">Part Number:</label>
-            <select id="part_number" name="part_number" class="custom-select" required>
-                <option value="">Seleccionar</option>
-                {% for p_number in part_number_list %}
-                    <option value="{{ p_number }}">{{ p_number }}</option>
-                {% endfor %}
-            </select>
-        </div>
+            <!-- Un input normal, pero con la propiedad list apuntando a un <datalist> -->
+            <input 
+              type="text" id="part_number" name="part_number" list="part_number_list" class="custom-select" required
+            >
+            <datalist id="part_number_list">
+              <option value="">Seleccionar</option>
+              {% for p_number in part_number_list %}
+                <option value="{{ p_number }}">
+              {% endfor %}
+            </datalist>
+          </div>
         <div class="form-group">
             <label for="part_name">Part Name:</label>
-            <select id="part_name" name="part_name" class="custom-select" required>
+            <input id="part_name" name="part_name" class="custom-select" required>
+            <datalist id="part_name_list">
                 <option value="">Seleccionar</option>
                 {% for p_name in part_name_list %}
-                    <option value="{{ p_name }}">{{ p_name }}</option>
+                    <option value="{{ p_name }}">
                 {% endfor %}
-            </select>
+                </datalist>
         </div>
         <div class="form-group">
             <label for="stock">Stock:</label>

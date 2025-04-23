@@ -70,7 +70,7 @@ a.btn:hover {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='5'%3E%3Cpath%20fill='%23333'%20d='M0,0%205,5%2010,0'%3E%3C/path%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='5'%3E%3Cpath%20fill='%23333'%20d='M0,0%205,5%2010,0'%3E%3C/path%3E%3C/svg%3E"); 
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 10px 5px;
